@@ -1,0 +1,42 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+sourceSets.main.groovy.srcDirs += ["src/main/java"]
+sourceSets.test.groovy.srcDirs += ["src/test/java"]
+
+repositories {
+    mavenCentral()
+}
+
+def versionSpring = "4.1.0.RELEASE"
+def versionSpringBoot = "1.1.6.RELEASE"
+
+dependencies {
+    compile "org.hibernate:hibernate-core:4.3.6.Final",
+            "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final",
+            "com.google.guava:guava:18.0",
+            "com.google.guava:guava-collections:r03",
+            "org.slf4j:slf4j-api:1.7.7",
+            "ch.qos.logback:logback-core:1.1.2",
+            "ch.qos.logback:logback-classic:1.1.2",
+            'javax.servlet:javax.servlet-api:3.1.0',
+//            "org.apache.commons:commons-lang3:3.3.2",
+//            'commons-collections:commons-collections:3.2.1',
+            "org.springframework:spring-core:$versionSpring",
+            "org.springframework:spring-web:$versionSpring",
+            "org.springframework:spring-context:$versionSpring",
+            "org.springframework:spring-orm:$versionSpring",
+            "org.codehaus.groovy:groovy-all:2.3.6"
+
+    testCompile "com.h2database:h2:1.4.181",
+            "org.springframework.boot:spring-boot-starter-test:$versionSpringBoot",
+            "junit:junit:jar:4.11"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
